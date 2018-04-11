@@ -1,6 +1,14 @@
-# CourseApp
+# Recipe Book App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+
+
+## Description
+
+App is done with ngRx, complete with state management.
+
+Before that, app used state managed in services, which were zipped up for reference.
+
 
 ## Development server
 
