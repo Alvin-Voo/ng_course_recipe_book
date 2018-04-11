@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="" style="cursor: pointer">Recipe Book</a>
+    <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/recipes" style="cursor: pointer">Recipes</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/shopping-list" style="cursor: pointer">Shopping List</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        <ng-template [ngIf]="!(authState|async).authenticated">
+          <li class="mr-4" ><a routerLink="/signin" role="button" style="cursor: pointer">Sign In</a></li>
+          <li class="mr-4" ><a routerLink="/signup" role="button" style="cursor: pointer">Register</a></li>
+        </ng-template>
+
+        <ng-template [ngIf]="(authState|async).authenticated">
+          <li class="mr-4" ><a role="button" style="cursor: pointer" (click)="onSignOut()">Log Out</a></li>
+          <li class="dropdown" appDropdown>
+            <a style="cursor: pointer" class="dropdown-toggle" role="button">
+              Manage <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a style="cursor: pointer" (click)="onSave()">Save Data</a></li>
+              <li><a style="cursor: pointer" (click)="onFetch()">Fetch Data</a></li>
+            </ul>
+
+            <!-- <a class="nav-link" href="#" id="navbarDropdown" role="button" ngbDropdownToggle>
+              Manage
+            </a>
+            <div ngbDropdownMenu aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Save Data</a>
+              <a class="dropdown-item" href="#">Fetch Data</a>
+            </div> -->
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+</nav>

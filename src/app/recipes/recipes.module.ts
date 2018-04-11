@@ -1,0 +1,34 @@
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RecipesComponent } from './recipes.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
+import { RecipeDummyComponent } from './recipe-dummy/recipe-dummy.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { SharedModule } from '../shared/shared.module';
+import { RecipesRoutingModule } from './recipes-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { recipeReducer } from './store/recipe.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import {RecipeEffects} from './store/recipe.effects';
+
+@NgModule({
+  declarations: [
+    RecipesComponent,
+    RecipeListComponent,
+    RecipeDetailComponent,
+    RecipeItemComponent,
+    RecipeDummyComponent,
+    RecipeEditComponent
+  ],
+  imports: [
+    SharedModule,
+    RecipesRoutingModule,
+    ReactiveFormsModule,
+    StoreModule.forFeature('recipes',recipeReducer),
+    EffectsModule.forFeature([RecipeEffects])
+  ]
+})
+export class RecipesModule { }

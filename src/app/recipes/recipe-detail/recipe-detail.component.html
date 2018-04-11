@@ -1,0 +1,54 @@
+
+<div class="row">
+  <div class="col">
+    <img
+    [src]="(recipeState | async).recipes[index].imagePath"
+    alt="{{(recipeState | async).recipes[index].name}}"
+    class="img-fluid"
+    style="max-height: 300px">
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h1>{{(recipeState | async).recipes[index].name}}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="btn-group" appDropdown>
+      <button
+      type="button"
+      class="btn btn-primary dropdown-toggle">
+      Manage Recipe <span class="caret"></span>
+    </button>
+      <ul class="dropdown-menu">
+        <li><a (click)="toShoppingList()" style="cursor: pointer">To Shopping List</a></li>
+        <li><a (click)="onEditRecipe()" style="cursor: pointer">Edit Recipe</a></li>
+        <li><a (click)="onDeleteRecipe()" style="cursor: pointer">Delete Recipe</a></li>
+      </ul>
+    </div>
+
+    <!-- <div ngbDropdown class="d-inline-block"> //solution by ng-bootstrap
+      <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Manage Recipe</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button class="dropdown-item">To Shopping List</button>
+        <button class="dropdown-item">Edit Recipe</button>
+        <button class="dropdown-item">Delete Recipe</button>
+      </div>
+    </div> -->
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    {{(recipeState | async).recipes[index].description}}
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <ul class="list-group" *ngIf="(recipeState | async).recipes[index]">
+      <li class="list-group-item"
+        *ngFor = "let ingredient of (recipeState | async).recipes[index].ingredients; index as i"
+      >{{ingredient.name}} ({{ingredient.amount}})</li>
+    </ul>
+  </div>
+</div>
